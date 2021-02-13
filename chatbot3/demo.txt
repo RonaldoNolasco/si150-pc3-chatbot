@@ -1,0 +1,15 @@
+ver productos
+tiene ramipril5mg
+tiene omeprazol20mg
+agregar Panadol500mgCaja100unid 2
+agregar Alcohol100X70% 3
+agregar MáquinaParaAfeitarGillette 1
+ver carrito
+remover Alcohol100X70%
+ver carrito
+confirmar compra
+1242144027516543
+10/29
+777
+Urb. Santa Clara 1424
+adios
