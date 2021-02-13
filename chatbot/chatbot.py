@@ -37,7 +37,7 @@ training_data_quesans = open('training_data/ques_ans.txt').read().splitlines()
 training_data_personal = open('training_data/personal_ques.txt').read().splitlines()
 training_data_ai = open('training_data/ai.txt').read().splitlines()
 training_data_ia2 = open('training_data/ia2.txt').read().splitlines()
-training_data = training_data_quesans + training_data_personal + training_data_ai + training_data_ia2
+training_data = training_data_quesans + training_data_personal + training_data_ai
 
 trainer = ListTrainer(chatbot)
 trainer.train(training_data)  
