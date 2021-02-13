@@ -6,6 +6,7 @@ import numpy as py
 import random
 import string
 import warnings
+from random import randint
 
 warnings.filterwarnings('ignore')
 f = open('text.txt','r',errors='ignore')
@@ -61,26 +62,30 @@ def response(user_response):
 import pandas as pd
 df = pd.read_csv('farmacia.csv')
 
-#cant = df.loc[df['medicamento'==y,'cantidad']]
-
 ###############################################################
 flag = True
+nombre_chatbot = "CovidBot"
 
-print("Chatbot: My name is chatbot. I will answer your queries about AI. If you want to exit, type Bye!")
+print("Chatbot: Mi nombre es {nombre}. Responderé sobre tus consultas de la Farmacia Moderna. Si quieres salir, escribe 'adios'").format(nombre_chatbot)
 
 carrito = []
 
 while(flag == True):
+    print("Usuario: ", end="")
     user_response = input()
     user_response = user_response.lower()
   
     producto = ''
-    if (user_response !='bye'):
+    if (user_response !='adios'):
         se_encontro = 0
     
         user_entry = " ".join(user_response.split())
+
+        if (user_entry == "ver productos"):
+            for index, value in df.iterrows():
+                print("Chatbot: Producto: " + str(value["medicamento"]) + "\tPrecio: " + str(value["precio"]) + "\tStock: " + str(value["cantidad"]))
         
-        if (user_entry.startswith("tiene")):
+        elif (user_entry.startswith("tiene")):
             for x in df['medicamento']:
                 if (x in user_entry):
                     if se_encontro == 0:
@@ -90,7 +95,7 @@ while(flag == True):
                         se_encontro = 2
 
             if se_encontro == 0:
-                print("Lo siento, no detecté ningun producto en su mensaje")
+                print("Chatbot: Lo siento, no detecté ningun producto en su mensaje")
             elif se_encontro == 1:
                 stock = df.loc[df['medicamento'] == producto, 'cantidad'].iloc[0]
                 precio = df.loc[df['medicamento'] == producto, 'precio'].iloc[0]
@@ -99,20 +104,20 @@ while(flag == True):
                 print("Chatbot: Precio: "+ str(precio))
                 print("Chatbot: Descripción: "+ descripcion)
             elif se_encontro == 2:
-                print("Lo siento, solo manejo un producto al mismo tiempo, por favor solo mencione un producto")
+                print("Chatbot: Lo siento, solo manejo un producto al mismo tiempo, por favor solo mencione un producto")
         
-        if (user_entry == "ver carrito"):
-            print("Carrito actual: ")
+        elif (user_entry == "ver carrito"):
+            print("Chatbot: Carrito actual: ")
             for i in range (0,len(carrito)):
-                print("Producto: " + str(carrito[i][0]) + "     " + "Cantidad: " + str(carrito[i][1]) + "     " + "Precio: " + str(carrito[i][2]))
+                print("Chatbot: Producto: " + str(carrito[i][0]) + "     " + "Cantidad: " + str(carrito[i][1]) + "     " + "Precio: " + str(carrito[i][2]))
             
             subtotal = 0
             for value in carrito:
                 subtotal = subtotal + value[2]
 
-            print("Subtotal del carrito: " + str(subtotal))
+            print("Chatbot: Subtotal del carrito: " + str(subtotal))
 
-        if (user_entry.startswith("agregar")):
+        elif (user_entry.startswith("agregar")):
             for x in df['medicamento']:
                 if (x in user_entry):
                     if se_encontro == 0:
@@ -147,7 +152,7 @@ while(flag == True):
             elif se_encontro == 2:
                 print("Lo siento, solo se puede agregar un producto al mismo tiempo, por favor solo mencione un producto")
 
-        if (user_entry.startswith("remover")):
+        elif (user_entry.startswith("remover")):
             for x in df['medicamento']:
                 if (x in user_entry):
                     if se_encontro == 0:
@@ -174,18 +179,38 @@ while(flag == True):
                         
 
                 if(se_borro):
-                    print("El producto " + producto + " se borró exitosamente del carrito")
+                    print("Chatbot: El producto " + producto + " se borró exitosamente del carrito")
 
                 else:
-                    print("Lo siento, el producto " + producto + " no se encontró en su carrito")
+                    print("Chatbot: Lo siento, el producto " + producto + " no se encontró en su carrito")
                 
             elif se_encontro == 2:
-                print("Lo siento, solo se puede agregar un producto al mismo tiempo, por favor solo mencione un producto")
+                print("Chatbot: Lo siento, solo se puede agregar un producto al mismo tiempo, por favor solo mencione un producto")
+
+        elif (user_entry == "confirmar compra"):
+            array = user_entry.split(" ")
+            
+            print("Chatbot: Tarjeta: ")
+            print("Usuario: ", end="")
+            tarjeta = input()
+            print("Chatbot: FV: ")
+            print("Usuario: ", end="")
+            fv = input()
+            print("Chatbot: CVV: ")
+            print("Usuario: ", end="")
+            cvv = input()
+            print("Chatbot: Direccion de entrega: ")
+            print("Usuario: ", end="")
+            direccion = input()
+
+            print("Chatbot: Felicidades, su compra se ha realizado, la entrega se realizará en " + str(randint(1,5)) + " días")
+
+            carrito = []
 
         else:
             if (user_response == 'thanks' or user_response == 'thank you'):
                 flag = False
-                print("Chatbot: You are welcome...")
+                print("Chatbot: Eres bienvenido...")
             else:
                 if (greeting(user_response) != None):
                     print("Chatbot:" + greeting(user_response))
@@ -196,4 +221,4 @@ while(flag == True):
 
     else:
         flag = False 
-        print("Chatbot: Bye! take care...")
+        print("Chatbot: Adiós! Ve con cuidado...")
