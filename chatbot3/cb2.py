@@ -66,7 +66,7 @@ df = pd.read_csv('farmacia.csv')
 flag = True
 nombre_chatbot = "CovidBot"
 
-print("Chatbot: Mi nombre es {nombre}. Responderé sobre tus consultas de la Farmacia Moderna. Si quieres salir, escribe 'adios'").format(nombre_chatbot)
+print("Chatbot: Mi nombre es {nombre}. Responderé sobre tus consultas de la Farmacia Moderna. Si quieres salir, escribe 'adios'".format(nombre = nombre_chatbot))
 
 carrito = []
 
@@ -83,11 +83,11 @@ while(flag == True):
 
         if (user_entry == "ver productos"):
             for index, value in df.iterrows():
-                print("Chatbot: Producto: " + str(value["medicamento"]) + "\tPrecio: " + str(value["precio"]) + "\tStock: " + str(value["cantidad"]))
+                print("Chatbot: Producto: " + str(value["medicamento"]) + "\t\t\tPrecio: " + str(value["precio"]) + "\tStock: " + str(value["cantidad"]))
         
         elif (user_entry.startswith("tiene")):
             for x in df['medicamento']:
-                if (x in user_entry):
+                if (x.lower() in user_entry):
                     if se_encontro == 0:
                         producto = x
                         se_encontro = 1
@@ -119,7 +119,7 @@ while(flag == True):
 
         elif (user_entry.startswith("agregar")):
             for x in df['medicamento']:
-                if (x in user_entry):
+                if (x.lower() in user_entry):
                     if se_encontro == 0:
                         producto = x
                         se_encontro = 1
@@ -154,7 +154,7 @@ while(flag == True):
 
         elif (user_entry.startswith("remover")):
             for x in df['medicamento']:
-                if (x in user_entry):
+                if (x.lower() in user_entry):
                     if se_encontro == 0:
                         producto = x
                         se_encontro = 1

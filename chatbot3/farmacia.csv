@@ -1,5 +1,10 @@
 medicamento,cantidad,precio,descripcion
-nastisol,15,20,"Alivio sintomático de la gripe (caracterizada por fiebre, tos, congestión ótica y nasal, dolores de cabeza, dolores musculares), resfrío, catarro común, rinitis alérgica."
-panadol,3,30,Alivio rápido y efectivo del dolor y la fiebre. No irrita el estómago.
-ivermectina,2,50,La ivermectina es un fármaco antiparasitario desarrollado durante la década de 1970 tras una asociación entre el instituto Kitasato en Japón y Merck & Co
-vacuna covid,1,120,
+Nastizol caja 150u,200,102,"Alivio sintomático de la gripe (caracterizada por fiebre, tos, congestión ótica y nasal, dolores de cabeza, dolores musculares), resfrío, catarro común, rinitis alérgica."
+Panadol 500mg caja 100unid,2000,56,"Alivio rápido y efectivo del dolor y la fiebre. No irrita el estómago."
+Ivermectina 6mg/ml,50,10.20,"La ivermectina es un fármaco antiparasitario desarrollado durante la década de 1970 tras una asociación entre el instituto Kitasato en Japón y Merck & Co"
+Ramipril 5mg,500,4.84,"El ramipril se usa solo o en combinación con otros medicamentos para tratar la hipertensión. También se usa para reducir el riesgo de un ataque cardíaco."
+Amlodipino 5mg tableta, 1000, 0.06, "El amlodipino se usa solo o combinado con otros medicamentos para tratar la presión arterial alta en los adultos y niños mayores de 6 años de edad. También se usa para tratar ciertos tipos de angina (dolor de pecho)."
+Paracetamol blister, 5000, 2.50, "Se utiliza, tanto para aliviar el dolor debido a su actividad analgésica, como para reducir la fiebre, gracias a su actividad antipirética."
+Atorvastatina 20mg, 2000, 0.19, "La atorvastatina se utiliza junto con la dieta, pérdida de peso y ejercicio para reducir el riesgo de infarto y apoplejía y para reducir la probabilidad de que se necesite una cirugía de corazón en las personas que tienen una enfermedad del corazón o que estén en riesgo de desarrollar enfermedad del corazón."
+Omeprazol 20mg,1000,0.12,"Se utiliza solo o con otros medicamentos para tratar los síntomas de enfermedad por reflujo gastroesofágico"
+Levotiroxina sódica 100mg, 2000, 0.2, "Medicamento para reemplazar la hormona tiroidea y/o aliviar el estrés sobre la glándula tiroides"
