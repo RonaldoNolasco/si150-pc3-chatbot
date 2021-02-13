@@ -74,29 +74,33 @@ while(flag == True):
   user_response = input()
   user_response = user_response.lower()
   
-  esta_producto = False
   producto = ''
   if (user_response !='bye'):
+    se_encontro = 0
     
+    user_entry = " ".join(user_response.split())
     
-    mod = user_response.split()
+    if (user_entry.startswith("tiene")):
+        for x in df['medicamento']:
+            if (x in user_entry):
+                if se_encontro == 0:
+                    producto = x
+                    se_encontro = 1
+                elif se_encontro == 1:
+                    se_encontro = 2
+
+        if se_encontro == 0:
+            print("Lo siento, no detecté ningun producto en su mensaje")
+        elif se_encontro == 1:
+            stock = df.loc[df['medicamento'] == producto, 'cantidad'].iloc[0]
+            precio = df.loc[df['medicamento'] == producto, 'precio'].iloc[0]
+            descripcion = df.loc[df['medicamento'] == producto, 'descripcion'].iloc[0]
+            print("Chatbot: Tenemos "+ str(stock) + " en stock")
+            print("Chatbot: Precio: "+ str(precio))
+            print("Chatbot: Descripción: "+ descripcion)
+        elif se_encontro == 2:
+            print("Lo siento, solo manejo un producto al mismo tiempo, por favor solo mencione un producto")
     
-    for x in df['medicamento']:
-        if (x in mod):
-            esta_producto = True
-            producto = x
-    #mod2 = " ".join(mod[0:5])
-    
-    #mod2.lower()
-    #if (mod2 == "cual es el stock de"):
-    if(esta_producto):
-        #medicine = " ".join.mod[5]
-        stock = df.loc[df['medicamento'] == producto, 'cantidad'].iloc[0]
-        precio = df.loc[df['medicamento'] == producto, 'precio'].iloc[0]
-        descripcion = df.loc[df['medicamento'] == producto, 'descripcion'].iloc[0]
-        print("Chatbot: Tenemos "+ str(stock) + " en stock")
-        print("Chatbot: Precio: "+ str(precio))
-        print("Chatbot: Descripción: "+ descripcion)
     else:
         if (user_response == 'thanks' or user_response == 'thank you'):
             flag = False
@@ -108,8 +112,6 @@ while(flag == True):
                 print("Chatbot:",end = "") 
                 print(response(user_response))
                 sent_tokens.remove(user_response)
-    
-    
 
   else:
     flag = False 
